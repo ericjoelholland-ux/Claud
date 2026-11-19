@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Claud – schnell und unkompliziert im Web suchen.">
+  <title>Claud – Suche</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #202124;
+      background: #fff;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .topbar { height: 60px; display: flex; align-items: center; justify-content: flex-end; gap: 20px; padding: 0 28px; font-size: 13px; }
+    .apps-button { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; color: #5f6368; }
+    .apps-button:hover { background: #f0f2f5; text-decoration: none; }
+    .apps-icon { display: grid; grid-template-columns: repeat(3, 4px); gap: 3px; }
+    .apps-icon i { width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+    .profile { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #e8f0fe; color: #174ea6; font-size: 14px; font-weight: 600; }
+    main { flex: 1; display: flex; flex-direction: column; align-items: center; padding: clamp(95px, 17vh, 160px) 24px 80px; }
+    .brand { margin: 0 0 29px; font-size: clamp(68px, 12vw, 92px); font-weight: 500; letter-spacing: -7px; line-height: 1; }
+    .brand span:nth-child(1), .brand span:nth-child(4) { color: #4285f4; }
+    .brand span:nth-child(2) { color: #ea4335; }
+    .brand span:nth-child(3) { color: #fbbc05; }
+    .brand span:nth-child(5) { color: #34a853; }
+    .brand span:nth-child(6) { color: #ea4335; }
+    .search-form { width: min(100%, 584px); }
+    .searchbox { min-height: 48px; display: flex; align-items: center; gap: 13px; padding: 0 14px; border: 1px solid #dfe1e5; border-radius: 999px; transition: box-shadow .18s, border-color .18s; }
+    .searchbox:hover, .searchbox:focus-within { border-color: transparent; box-shadow: 0 1px 6px #20212447; }
+    .search-icon { flex: 0 0 auto; color: #9aa0a6; }
+    .searchbox input { flex: 1; min-width: 0; height: 42px; border: 0; outline: 0; color: #202124; background: transparent; font: 16px Arial, sans-serif; }
+    .icon-button { flex: 0 0 auto; width: 30px; height: 34px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; color: #5f6368; background: transparent; cursor: pointer; }
+    .icon-button:hover { background: #f1f3f4; }
+    .icon-button[aria-pressed="true"] { color: #d93025; }
+    .buttons { display: flex; justify-content: center; gap: 12px; margin-top: 29px; }
+    .buttons button { min-height: 36px; padding: 0 16px; border: 1px solid #f8f9fa; border-radius: 4px; color: #3c4043; background: #f8f9fa; font: 14px Arial, sans-serif; cursor: pointer; }
+    .buttons button:hover { border-color: #dadce0; box-shadow: 0 1px 1px #0000001a; }
+    .language { margin-top: 27px; color: #4d5156; font-size: 13px; }
+    .language a { margin-left: 5px; color: #1a0dab; }
+    footer { color: #70757a; background: #f2f2f2; font-size: 14px; }
+    .country { min-height: 48px; padding: 15px 30px; border-bottom: 1px solid #dadce0; }
+    .footer-links { min-height: 47px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 30px; }
+    .footer-group { display: flex; flex-wrap: wrap; gap: 27px; }
+    @media (max-width: 600px) {
+      .topbar { padding: 0 18px; gap: 15px; }
+      main { padding-top: 105px; }
+      .brand { letter-spacing: -5px; }
+      .footer-links { justify-content: center; padding: 16px 24px; }
+      .footer-group { justify-content: center; gap: 18px; }
+      .footer-group:last-child { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="Navigation">
+    <a href="https://mail.google.com/">Gmail</a>
+    <a href="https://www.google.com/imghp">Bilder</a>
+    <a class="apps-button" href="https://www.google.com/intl/de/about/products" aria-label="Google Apps">
+      <span class="apps-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    </a>
+    <a class="profile" href="https://accounts.google.com/" aria-label="Google-Konto">C</a>
+  </header>
+  <main>
+    <h1 class="brand" aria-label="Claud"><span>C</span><span>l</span><span>a</span><span>u</span><span>d</span></h1>
+    <form class="search-form" action="https://www.google.com/search" method="get" role="search">
+      <div class="searchbox">
+        <svg class="search-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="search" type="search" name="q" aria-label="Google-Suche" autocomplete="off" autofocus>
+        <button class="icon-button" id="voice" type="button" aria-label="Sprachsuche" title="Sprachsuche">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285f4" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path fill="#34a853" d="M19 11a1 1 0 0 0-2 0 5 5 0 0 1-10 0 1 1 0 0 0-2 0 7 7 0 0 0 6 6.93V21h2v-3.07A7 7 0 0 0 19 11Z"/></svg>
+        </button>
+        <a class="icon-button" href="https://lens.google.com/" aria-label="Mit Google Lens suchen" title="Mit Google Lens suchen">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4 6.7 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-2.7L16 4H8Z" stroke="#4285f4" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" stroke="#ea4335" stroke-width="1.8"/><path d="M4 8h2" stroke="#34a853" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+      <div class="buttons">
+        <button type="submit">Google Suche</button>
+        <button type="button" id="lucky">Auf gut Glück!</button>
+      </div>
+    </form>
+    <p class="language">Google angeboten auf: <a href="https://www.google.com/?hl=en">English</a></p>
+  </main>
+  <footer>
+    <div class="country">Deutschland</div>
+    <nav class="footer-links" aria-label="Footer">
+      <div class="footer-group"><a href="https://about.google/">Über Google</a><a href="https://ads.google.com/">Werbung</a><a href="https://www.google.com/services/">Unternehmen</a><a href="https://www.google.com/search/howsearchworks/">Wie funktioniert die Google Suche?</a></div>
+      <div class="footer-group"><a href="https://policies.google.com/privacy">Datenschutzerklärung</a><a href="https://policies.google.com/terms">Nutzungsbedingungen</a><a href="https://www.google.com/preferences">Einstellungen</a></div>
+    </nav>
+  </footer>
+  <script>
+    const search = document.querySelector('#search');
+    document.querySelector('#lucky').addEventListener('click', () => {
+      const query = search.value.trim();
+      if (query) window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}&btnI=1`;
+      else search.focus();
+    });
+    const voiceButton = document.querySelector('#voice');
+    voiceButton.addEventListener('click', () => {
+      const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!Recognition) {
+        search.placeholder = 'Sprachsuche wird in diesem Browser nicht unterstützt';
+        search.focus();
+        return;
+      }
+      const recognition = new Recognition();
+      recognition.lang = 'de-DE';
+      voiceButton.setAttribute('aria-pressed', 'true');
+      recognition.onresult = event => {
+        search.value = event.results[0][0].transcript;
+        search.form.requestSubmit();
+      };
+      recognition.onerror = () => voiceButton.setAttribute('aria-pressed', 'false');
+      recognition.onend = () => voiceButton.setAttribute('aria-pressed', 'false');
+      recognition.start();
+    });
+  </script>
+</body>
+</html>
